@@ -5,30 +5,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Firebase</title>
+    <link href="/dist/output.css" rel="stylesheet">
 </head>
 
-<body>
-    <h1>Getting Started with Firebase 9</h1>
-    <h2>Firebase Firestore</h2>
+<body class="max-w-5xl mx-auto">
+    <form action="#" class="add my-10">
+        <div>
+            <label class="text-gray-600 text-2xl">Title</label>
+            <input name="title" class="w-full py-3  px-6 border border-gray-600" type="text"
+                placeholder="Enter Your title...">
 
-    <form class="add">
-        <label for="title">Title:</label>
-        <input type="text" name="title" required>
-        <label for="author">Author:</label>
-        <input type="text" name="author" required>
-
+        </div>
+        <div>
+            <label class="text-gray-600 text-2xl">Description</label>
+            <input name="desc" class="w-full py-3  px-6 border border-gray-600" type="text"
+                placeholder="Enter Your description...">
+        </div>
         <button>add a new book</button>
     </form>
-   <hr>
-   
-    <form class="delete">
-        <label for="id">Document id:</label>
-        <input type="text" name="id" required>
-        <button>delete a book</button>
+    <hr>
+    <form class="delete" action="#">
+        <div>
+            <label class="text-gray-600 text-2xl">ID</label>
+            <input name="delete" class="w-full py-3  px-6 border border-gray-600" type="text"
+                placeholder="Enter Your  ID...">
+        </div>
+        <button class="py-3 px-10 bg-red-500 text-white">Delete</button>
     </form>
-
     <script src="bundle.js"></script>
+
 </body>
 
 </html>
