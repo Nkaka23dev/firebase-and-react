@@ -39,7 +39,6 @@ deleteForm.addEventListener('submit', (e) => {
         console.log("Error occured", err)
     })
 })
-
 const addDocs = async () => {
     try {
         const res = await addDoc(collectionRef, {
