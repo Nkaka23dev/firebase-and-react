@@ -1,17 +1,23 @@
 {
-  "name": "nkaka",
+  "name": "fire",
   "version": "1.0.0",
-  "description": "Fireabse project initaized by naka",
+  "description": "This to explore how firebase works with vanilla",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "test",
     "build": "webpack"
   },
-  "author": "",
+  "keywords": [
+    "f"
+  ],
+  "author": "Eric Nkaka",
   "license": "ISC",
   "dependencies": {
     "firebase": "^9.19.1",
-    "webpack": "^5.77.0",
+    "webpack": "^5.78.0",
     "webpack-cli": "^5.0.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.1"
   }
 }
