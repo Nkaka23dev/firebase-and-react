@@ -1,5 +1,5 @@
-import { initializeApp } from 'firebase/app'
-import { collection, getDocs, getFirestore } from 'firebase/firestore'
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBSZB-CmomA5mdjICWXAc9YQBH_OlSqQpc",
@@ -7,25 +7,63 @@ const firebaseConfig = {
     projectId: "initialproject-de653",
     storageBucket: "initialproject-de653.appspot.com",
     messagingSenderId: "608495829670",
-    appId: "1:608495829670:web:601cddca9968c8d0526a67"
+    appId: "1:608495829670:web:242f5db96202f0c1526a67"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
 const db = getFirestore(app);
 
-const collectionRef = collection(db, 'books');
+const collectionRef = collection(db, "blogs");
 
-getDocs(collectionRef).then((snapShot) => {
-    let books = [];
-    snapShot.docs.forEach((doc) => {
-        books.push({ ...doc.data(), id: doc.id })
+// getDocs(collectionRef).then((data) => {
+
+// })
+onSnapshot(collectionRef, (data) => {
+    let arr = [];
+    data.forEach((doc) => {
+        arr.push({ ...doc.data(), id: doc.id });
     })
-
-    console.log(books)
-}).catch((err) => {
-    console.log(err)
+    console.log(arr)
 })
 
+const addForm = document.querySelector(".add");
+addForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!addForm.title.value || !addForm.desc.value) {
+        console.log("Empt form can't be submitted!")
+        return
+    }
+    addDocs();
+})
+const deleteForm = document.querySelector(".delete");
+deleteForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!deleteForm.delete.value) {
+        console.log("Empt form can't be submitted!")
+        return
+    }
+    deleteDoc(doc(db, 'blogs', deleteForm.delete.value)).then(data => {
+        console.log("Data deleted", data)
+    }).catch(err => {
+        console.log("Error occured", err)
+    })
+})
+const addDocs = async () => {
+    try {
+        const res = await addDoc(collectionRef, {
+            title: addForm.title.value,
+            description: addForm.desc.value
+        })
 
+        if (res) {
+            addForm.reset();
+            console.log("Form data submitted successfully")
+        }
 
+    } catch (e) {
+        console.log("Error occured!", e)
+    }
+}
 
