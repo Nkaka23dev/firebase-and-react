@@ -1,7 +1,17 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, onSnapshot, query } from "firebase/firestore";
-
-
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    addDoc,
+    deleteDoc,
+    doc,
+    onSnapshot,
+    query,
+    where,
+    orderBy,
+    serverTimestamp
+} from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBSZB-CmomA5mdjICWXAc9YQBH_OlSqQpc",
@@ -22,7 +32,20 @@ const collectionRef = collection(db, "blogs");
 // getDocs(collectionRef).then((data) => {
 
 // })
-onSnapshot(collectionRef, (data) => {
+// const q = query(collectionRef, where('title', '==', 'basket ball'), orderBy('description', 'desc'));
+
+const specificTitle = query(collectionRef, where('title', '==', 'Machine Learning Examples and Applications'), orderBy('createdAt'));
+const allData = query(collectionRef, orderBy('createdAt', 'desc'))
+
+onSnapshot(specificTitle, (data) => {
+    let arr = [];
+    data.forEach((doc) => {
+        arr.push({ ...doc.data(), id: doc.id });
+    })
+    console.log(arr)
+})
+// This  is a general search awe use onSnapshot instead of getDocs because with snapshot data will gete updated imediately when you delete or add
+onSnapshot(allData, (data) => {
     let arr = [];
     data.forEach((doc) => {
         arr.push({ ...doc.data(), id: doc.id });
@@ -56,7 +79,8 @@ const addDocs = async () => {
     try {
         const res = await addDoc(collectionRef, {
             title: addForm.title.value,
-            description: addForm.desc.value
+            description: addForm.desc.value,
+            createdAt: serverTimestamp()
         })
 
         if (res) {
