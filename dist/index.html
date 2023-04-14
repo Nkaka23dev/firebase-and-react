@@ -1,13 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Firebase</title>
+    <link href="/dist/output.css" rel="stylesheet">
 </head>
-<body>
-    <h1>HelloEvery one this is firebase initial Project.</h1>
+
+<body class="max-w-5xl mx-auto">
+    <form action="#" class="add my-10">
+        <div>
+            <label class="text-gray-600 text-2xl">Title</label>
+            <input name="title" class="w-full py-3  px-6 border border-gray-600" type="text"
+                placeholder="Enter Your title...">
+   
+        </div>
+        <div>
+            <label class="text-gray-600 text-2xl">Description</label>
+            <input name="desc" class="w-full py-3  px-6 border border-gray-600" type="text"
+                placeholder="Enter Your description...">
+        </div>
+        <button>add a new book</button>
+    </form>
+    <hr>
+    <!-- th -->
+    <form class="delete" action="#">
+        <div>
+            <label class="text-gray-600 text-2xl">ID</label>
+            <input name="delete" class="w-full py-3  px-6 border border-gray-600" type="text"
+                placeholder="Enter Your  ID...">
+        </div>
+        <button class="py-3 px-10 bg-red-500 text-white">Delete</button>
+    </form>
+    <hr>
+    <!-- This is the form -->
+    <form class="update" action="#">
+        <div>
+            <label class="text-gray-600 text-2xl">ID for UPdate </label>
+            <input name="update" class="w-full py-3  px-6 border border-gray-600" type="text"
+                placeholder="Enter Your  ID to update a blog...">
+        </div>
+        <button class="py-3 px-10 bg-red-500 text-white">Update</button>
+    </form>
     <script src="bundle.js"></script>
 </body>
+
 </html>
