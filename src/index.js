@@ -10,7 +10,9 @@ import {
     query,
     where,
     orderBy,
-    serverTimestamp
+    serverTimestamp,
+    getDoc,
+    updateDoc
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -33,8 +35,9 @@ const collectionRef = collection(db, "blogs");
 
 // })
 // const q = query(collectionRef, where('title', '==', 'basket ball'), orderBy('description', 'desc'));
-
+// fetching the data and ordering them also with specification 
 const specificTitle = query(collectionRef, where('title', '==', 'Machine Learning Examples and Applications'), orderBy('createdAt'));
+
 const allData = query(collectionRef, orderBy('createdAt', 'desc'))
 
 onSnapshot(specificTitle, (data) => {
@@ -44,7 +47,8 @@ onSnapshot(specificTitle, (data) => {
     })
     console.log(arr)
 })
-// This  is a general search awe use onSnapshot instead of getDocs because with snapshot data will gete updated imediately when you delete or add
+//====================================================
+// This  is a general search we use onSnapshot instead of getDocs because with snapshot data will gete updated imediately when you delete or add
 onSnapshot(allData, (data) => {
     let arr = [];
     data.forEach((doc) => {
@@ -52,6 +56,8 @@ onSnapshot(allData, (data) => {
     })
     console.log(arr)
 })
+//====================================================
+// All logic about adding a blogs to the firebase.
 
 const addForm = document.querySelector(".add");
 addForm.addEventListener('submit', (e) => {
@@ -62,11 +68,27 @@ addForm.addEventListener('submit', (e) => {
     }
     addDocs();
 })
+const addDocs = async () => {
+    try {
+        const res = await addDoc(collectionRef, {
+            title: addForm.title.value,
+            description: addForm.desc.value,
+            createdAt: serverTimestamp()
+        })
+        if (res) {
+            addForm.reset();
+            console.log("Form data submitted successfully")
+        }
+    } catch (e) {
+        console.log("Error occured!", e)
+    }
+}
+//This is about selecting deleteForm and delete a blog by providing an ID
 const deleteForm = document.querySelector(".delete");
 deleteForm.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!deleteForm.delete.value) {
-        console.log("Empt form can't be submitted!")
+        console.log("Empety form can't be submitted!")
         return
     }
     deleteDoc(doc(db, 'blogs', deleteForm.delete.value)).then(data => {
@@ -75,21 +97,38 @@ deleteForm.addEventListener('submit', (e) => {
         console.log("Error occured", err)
     })
 })
-const addDocs = async () => {
-    try {
-        const res = await addDoc(collectionRef, {
-            title: addForm.title.value,
-            description: addForm.desc.value,
-            createdAt: serverTimestamp()
-        })
+// The following is about to get a single blog with Id
+const singleRef = doc(db, "blogs", "dPrxjZOuKhlJHdXsac4g");
 
-        if (res) {
-            addForm.reset();
-            console.log("Form data submitted successfully")
-        }
+getDoc(singleRef).then((doc) => {
+    console.log(doc.data(), doc.id)
+}).catch(err => {
+    console.log(err)
+})
 
-    } catch (e) {
-        console.log("Error occured!", e)
+//UPDATE the blog by first selecting update form and update by providing an ID
+const updateForm = document.querySelector(".update");
+updateForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!updateForm.update.value) {
+        console.log("Empty form,,,, Can't be updated..")
+        return
     }
-}
+    const dataToUpdate = doc(db, 'blogs', updateForm.update.value);
+    updateDoc(dataToUpdate, {
+        title: "UPDATED TITLE BY ERIC NKAKA"
+    }).then(() => {
+        console.log("Data updated success!!!")
+        updateForm.reset();
+    }).catch(err => console.log(err))
 
+})
+
+/***  *************************************************************
+  
+
+
+
+
+
+ * ******************************************************************** ****/
