@@ -1,4 +1,4 @@
-# Some rules foe regex 
+# Some rules for regex 
 
 ## CHARACTER SETS 
 1. [ng]injas, this means that n or g should start, we will have a match wether for n or g.
