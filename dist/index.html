@@ -1,13 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Firebase</title>
+    <link href="/dist/output.css" rel="stylesheet">
 </head>
-<body>
-    <h1>HelloEvery one this is firebase initial Project.</h1>
+
+<body class="max-w-3xl mx-auto py-10">
+    <h1 class="py-6 text-3xl font-semibold">New User Sign In Form</h1>
+    <form action="#" class="flex flex-col gap-10">
+        <div>
+            <input type="text" name="username"
+                class="py-3 rounded-md w-full px-5 placeholder:text-xl  focus:outline-none border-2 border-gray-500"
+                placeholder="User Name....">
+            <p class="text-red-500 text-lg capitalize hidden">Username must be alphanumeric and contain 5 - 12
+                characters</p>
+        </div>
+        <div>
+            <input type="text" name="email"
+                class="py-3 rounded-md w-full px-5 placeholder:text-xl  focus:outline-none border-2 border-gray-500"
+                placeholder="email....">
+            <p class="text-red-500 text-lg capitalize hidden">must be a valid address, e.g. me@mydomain.com</p>
+        </div>
+        <div>
+            <input type="password" name="password"
+                class="py-3 rounded-md w-full px-5 placeholder:text-xl  focus:outline-none border-2 border-gray-500"
+                placeholder="password....">
+            <p class="text-red-500 text-lg capitalize hidden">must alphanumeric (@, _ and - are also allowed) and be 8 -
+                20
+                characters</p>
+        </div>
+        <div>
+            <input type="text" name="telephone"
+                class="py-3 rounded-md w-full px-5 placeholder:text-xl  focus:outline-none border-2 border-gray-500"
+                placeholder="telephone....">
+            <p class="text-red-500 text-lg capitalize hidden">Telephone must be a valid UK telephone number (11 digits)
+            </p>
+        </div>
+        <div>
+            <input type="text" name="profile"
+                class="py-3 rounded-md w-full px-5 placeholder:text-xl  focus:outline-none border-2 border-gray-500"
+                placeholder="profile slug....">
+            <p class="text-red-500 text-lg capitalize hidden">Slug must contain only lowercase letters, numbers and
+                hyphens and be 8 - 20 characters</p>
+        </div>
+    </form>
     <script src="bundle.js"></script>
 </body>
+
 </html>
+
+
+
+<head>

@@ -1,31 +1,24 @@
-import { initializeApp } from 'firebase/app'
-import { collection, getDocs, getFirestore } from 'firebase/firestore'
+const patterns = {
+    telephone: /^\d{11}$/,
+    username: /^[a-z\d\s+]{5,10}$/i,
+    password: /^[\w@-]{8,15}$/i,
+    profile: /^[a-z0-9-]{8,20}$/,
+    email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/
+}
+const inputs = document.querySelectorAll('input');
 
-const firebaseConfig = {
-    apiKey: "AIzaSyBSZB-CmomA5mdjICWXAc9YQBH_OlSqQpc",
-    authDomain: "initialproject-de653.firebaseapp.com",
-    projectId: "initialproject-de653",
-    storageBucket: "initialproject-de653.appspot.com",
-    messagingSenderId: "608495829670",
-    appId: "1:608495829670:web:601cddca9968c8d0526a67"
-};
+const validate = (field, regex) => {
+    if (regex.test(field.value)) {
+        field.classList.add("border-green-500")
+        field.classList.remove("border-red-500")
+    } else {
+        field.classList.add("border-red-500")
+        field.classList.remove("border-green-500")
+    }
+}
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-const collectionRef = collection(db, 'books');
-
-getDocs(collectionRef).then((snapShot) => {
-    let books = [];
-    snapShot.docs.forEach((doc) => {
-        books.push({ ...doc.data(), id: doc.id })
+inputs.forEach(input => {
+    input.addEventListener('keyup', (e) => {
+        validate(e.target, patterns[e.target.attributes.name.value])
     })
-
-    console.log(books)
-}).catch((err) => {
-    console.log(err)
 })
-
-
-
-
