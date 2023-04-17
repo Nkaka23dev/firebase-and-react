@@ -9,40 +9,24 @@
     <link href="/dist/output.css" rel="stylesheet">
 </head>
 
-<body class="max-w-5xl mx-auto">
-    <form action="#" class="add my-10">
-        <div>
-            <label class="text-gray-600 text-2xl">Title</label>
-            <input name="title" class="w-full py-3  px-6 border border-gray-600" type="text"
-                placeholder="Enter Your title...">
-   
-        </div>
-        <div>
-            <label class="text-gray-600 text-2xl">Description</label>
-            <input name="desc" class="w-full py-3  px-6 border border-gray-600" type="text"
-                placeholder="Enter Your description...">
-        </div>
-        <button>add a new book</button>
-    </form>
-    <hr>
-    <!-- th -->
-    <form class="delete" action="#">
-        <div>
-            <label class="text-gray-600 text-2xl">ID</label>
-            <input name="delete" class="w-full py-3  px-6 border border-gray-600" type="text"
-                placeholder="Enter Your  ID...">
-        </div>
-        <button class="py-3 px-10 bg-red-500 text-white">Delete</button>
-    </form>
-    <hr>
-    <!-- This is the form -->
-    <form class="update" action="#">
-        <div>
-            <label class="text-gray-600 text-2xl">ID for UPdate </label>
-            <input name="update" class="w-full py-3  px-6 border border-gray-600" type="text"
-                placeholder="Enter Your  ID to update a blog...">
-        </div>
-        <button class="py-3 px-10 bg-red-500 text-white">Update</button>
+<body class="max-w-3xl mx-auto py-10">
+    <h1 class="py-6 text-3xl font-semibold">New User Sign In Form</h1>
+    <form action="#" class="flex flex-col gap-10">
+        <input type="text" name="username"
+            class="py-3 rounded-md w-full px-5 placeholder:text-xl  focus:outline-none border-2 border-gray-500"
+            placeholder="User Name....">
+        <input type="text" name="email"
+            class="py-3 rounded-md w-full px-5 placeholder:text-xl  focus:outline-none border-2 border-gray-500"
+            placeholder="email....">
+        <input type="password" name="password"
+            class="py-3 rounded-md w-full px-5 placeholder:text-xl  focus:outline-none border-2 border-gray-500"
+            placeholder="password....">
+        <input type="text" name="telephone"
+            class="py-3 rounded-md w-full px-5 placeholder:text-xl  focus:outline-none border-2 border-gray-500"
+            placeholder="telephone....">
+        <input type="text" name="profile"
+            class="py-3 rounded-md w-full px-5 placeholder:text-xl  focus:outline-none border-2 border-gray-500"
+            placeholder="profile slug....">
     </form>
     <script src="bundle.js"></script>
 </body>
