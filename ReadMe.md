@@ -1,4 +1,4 @@
-# Some rules foe regex 
+# Some rules for regex 
 
 ## CHARACTER SETS 
 
