@@ -10,12 +10,46 @@
 </head>
 
 <body class="max-w-5xl mx-auto">
+    <form action="#" id="sign" class=" my-10 border-2 border-gray-500">
+        <div class="p-4">
+            <h1 class="text-2xl ">Sign Up Form</h1>
+            <div>
+                <label class="text-gray-600 text-2xl">Email</label>
+                <input name="email" class="w-full py-3  px-6 border border-gray-600" type="text"
+                    placeholder="Enter Your title...">
+            </div>
+            <div>
+                <label class="text-gray-600 text-2xl">Password</label>
+                <input name="password" class="w-full py-3  px-6 border border-gray-600" type="text"
+                    placeholder="Enter Your description...">
+            </div>
+            <button class="py-3 px-5 bg-blue-500 hover:bg-blue-600 my-3 text-white font-semibold">Sign Up a New
+                User</button>
+        </div>
+    </form>
+    <hr>
+    <form action="#" id="login" class=" my-10 border-4 border-green-500">
+        <div class="p-4">
+            <h1 class="text-2xl ">LOGIN FORM</h1>
+            <div>
+                <label class="text-gray-600 text-2xl">Email</label>
+                <input name="email" class="w-full py-3  px-6 border border-gray-600" type="text"
+                    placeholder="Enter Your title...">
+            </div>
+            <div>
+                <label class="text-gray-600 text-2xl">Password</label>
+                <input name="password" class="w-full py-3  px-6 border border-gray-600" type="text"
+                    placeholder="Enter Your description...">
+            </div>
+            <button class="py-3 px-5 bg-green-500 hover:bg-green-600 my-3 text-white font-semibold">Login</button>
+        </div>
+    </form>
     <form action="#" class="add my-10">
         <div>
             <label class="text-gray-600 text-2xl">Title</label>
             <input name="title" class="w-full py-3  px-6 border border-gray-600" type="text"
                 placeholder="Enter Your title...">
-   
+
         </div>
         <div>
             <label class="text-gray-600 text-2xl">Description</label>
@@ -32,7 +66,7 @@
             <input name="delete" class="w-full py-3  px-6 border border-gray-600" type="text"
                 placeholder="Enter Your  ID...">
         </div>
-        <button class="py-3 px-10 bg-red-500 text-white">Delete</button>
+        <button class="py-3 px-10 bg -red-500 text-white">Delete</button>
     </form>
     <hr>
     <!-- This is the form -->
@@ -44,7 +78,10 @@
         </div>
         <button class="py-3 px-10 bg-red-500 text-white">Update</button>
     </form>
+    <hr>
+
     <script src="bundle.js"></script>
 </body>
+
 
 </html>

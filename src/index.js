@@ -12,8 +12,9 @@ import {
     orderBy,
     serverTimestamp,
     getDoc,
-    updateDoc
+    updateDoc,
 } from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBSZB-CmomA5mdjICWXAc9YQBH_OlSqQpc",
@@ -26,8 +27,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 const db = getFirestore(app);
+
+const auth = getAuth(app);
 
 const collectionRef = collection(db, "blogs");
 
@@ -63,7 +65,7 @@ const addForm = document.querySelector(".add");
 addForm.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!addForm.title.value || !addForm.desc.value) {
-        console.log("Empt form can't be submitted!")
+        console.log("Empty form can't be submitted!")
         return
     }
     addDocs();
@@ -105,7 +107,6 @@ getDoc(singleRef).then((doc) => {
 }).catch(err => {
     console.log(err)
 })
-
 //UPDATE the blog by first selecting update form and update by providing an ID
 const updateForm = document.querySelector(".update");
 updateForm.addEventListener('submit', (e) => {
@@ -121,14 +122,52 @@ updateForm.addEventListener('submit', (e) => {
         console.log("Data updated success!!!")
         updateForm.reset();
     }).catch(err => console.log(err))
-
 })
-
 /***  *************************************************************
-  
-
-
-
-
-
+ * BELOW IS CREATING A USER WITH EMAIL AND PASSWORD WITH FIREBASE
  * ******************************************************************** ****/
+const signUpForm = document.querySelector("#sign");
+
+signUpForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!signUpForm.email.value || !signUpForm.password.value) {
+        console.log("Empty form can't be submitted!")
+        return
+    }
+    createUserWithEmailAndPassword(auth, signUpForm.email.value, signUpForm.password.value)
+        .then((userCredential) => {
+            console.log("Created User:", userCredential.user)
+        })
+        .catch((error) => {
+            console.log(error.code)
+            console.log(error.message)
+            // ..
+        });
+})
+//SIGNIN USER IN WITH EMAIL AND PASSWORD.
+const loginForm = document.querySelector("#login");
+
+loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!loginForm.email.value || !loginForm.password.value) {
+        console.log("Empty form can't be submitted!")
+        return
+    }
+    signInWithEmailAndPassword(auth, loginForm.email.value, loginForm.password.value)
+        .then((userCredential) => {
+            console.log("LOGIDED IN USER", userCredential.user)
+        })
+        .catch((error) => {
+            console.log(error.code)
+            console.log(error.message)
+        });
+}) 
+
+/**  
+ * THE REST IS HOW to subscribe and unsubcribe the data when a user is logged in, 
+ * I can use documention or watch ninjas tutorial to catch up with it, besides, there many other functionality I have to get form the documentation .
+ * 
+ * Also, I will repeat this on my own.
+ * **/
+
+
