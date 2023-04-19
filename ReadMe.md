@@ -52,4 +52,8 @@ to escape special character or metercharacter we use \
 example ===> abc\? 
 
 ### | pipes (m|n|j)kaka 
-we are syaing either mkaka, nkaka or jkaka.
+we are syaing either mkaka, nkaka or jkaka. 
+
+### Methods 
+{exec, test} ==> 'with this methods we always start with regex.test() or exec'
+match,replace, search, split, matchAll,toString ==> 'with this we start with text.replace()'
