@@ -15,7 +15,7 @@ like /^$/gmi, global means if more than two words matches allow it.
 can be capital(case insensitive), to only allow the [a-z] to be case insensitive nkaka stays case senstitive we can do like /^[a-zA-Z]nkaka$/, or [a-zA-Z0-9]nkaka to includes numbers
 
 ## REPEATING 
-
+ 
 [0-9],
 with manual repeat you can do like
 [0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]
@@ -57,3 +57,18 @@ we are syaing either mkaka, nkaka or jkaka.
 ### Methods 
 {exec, test} ==> 'with this methods we always start with regex.test() or exec'
 match,replace, search, split, matchAll,toString ==> 'with this we start with text.replace()'
+
+### others 
+(?=) e.d /\w+(?=at)/ lookforward, (?!) e.g /\w+(?!at)/ 
+
+negative lookforward(
+##### const regex = /(?!\d+ dollars)\d+/g 
+#####  const text = "100 dollars";
+#####  console.log(regex.test(text))) 
+
+### Examples 2
+
+(?<=https:\/\/)(.*)(?=\.com) 
+
+https://Kigali.com/
+https://regex101.com/
